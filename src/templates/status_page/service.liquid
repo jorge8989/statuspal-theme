@@ -1,0 +1,29 @@
+{% case service.current_incident_type %}
+  {% when 'i' %}
+     {% assign icon = 'glyphicon-minus-sign' %}
+     {% assign type = 'Minor Incident' %}
+  {% when 'a' %}
+     {% assign icon = 'glyphicon-remove' %}
+     {% assign type = 'Major Incident' %}
+  {% when 's' %}
+     {% assign icon = 'glyphicon-cog' %}
+     {% assign type = 'Scheduled Maintenance' %}
+  {% else %}
+     {% assign icon = 'glyphicon-ok' %}
+     {% assign type = 'No known issues at this time' %}
+{% endcase %}
+
+<div class="service-status{% if service.parent_id %} service-child{% endif %} status-type{% if service.current_incident_type %}-{{ service.current_incident_type }}{% endif %}">
+  <span class="service-status--name">{{ service.name }}</span>
+  <div class="card">
+    <div class="status-column"></div>
+    <div class="service-status--details-column">
+      <spam
+        class="service-status--icon glyphicon {{ icon }}"
+        aria-hidden="true"
+      >
+    </spam>
+    <span class="service-status--status">{{ type }}</span>
+    </div>
+  </div>
+</div>

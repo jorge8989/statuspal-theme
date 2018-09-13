@@ -6,6 +6,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
     "dev": "webpack-dev-server",
     "release": "NODE_ENV=production webpack -p"
   },
@@ -18,7 +19,7 @@
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^4.0.0-alpha.2",
-    "liquid-loader": "git:git@github.com:statuspal/liquid-loader.git",
+    "liquid-loader": "file:../liquid-loader",
     "node-sass": "^4.9.3",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.0",

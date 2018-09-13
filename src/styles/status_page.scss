@@ -118,7 +118,7 @@
       .service-status--icon { color: $status-maintenance-incident-color; }
     }
 
-    &.status-type- {
+    &.status-type {
       .service-status--icon { color: $status-no-incident-color; }
     }
   }
@@ -190,7 +190,7 @@
   .status-type-i .status-column { background: $status-minor-incident-color }
   .status-type-a .status-column { background: $status-major-incident-color }
   .status-type-s .status-column { background: $status-maintenance-incident-color }
-  .status-type- .status-column { background: $status-no-incident-color }
+  .status-type .status-column { background: $status-no-incident-color }
 
   .previous-incidents {
     color: grey;

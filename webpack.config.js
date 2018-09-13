@@ -9,7 +9,7 @@ const mode = process.env.NODE_ENV === 'production' ? 'production' : 'development
 const getConfig = (data) => {
   const htmlLoaders = [{ loader: "html-loader" }];
   if (mode !== 'production') htmlLoaders.push({
-    loader: "liquid-loader", options: { data, context: path.resolve(__dirname, 'src/templates'), extension: 'liquid' }
+    loader: "liquid-loader", options: { data, root: path.resolve(__dirname, 'src/templates/status_page') }
   });
   return {
     mode: mode,
@@ -26,7 +26,7 @@ const getConfig = (data) => {
       ],
     },
     plugins: [
-      new HtmlWebpackPlugin({ template: __dirname + '/src/templates/index.liquid' }),
+      new HtmlWebpackPlugin({ template: __dirname + '/src/templates/status_page/index.liquid' }),
       new ExtractTextPlugin('css/[name]-[hash].css'),
       new CleanWebpackPlugin([path.resolve(__dirname, 'dist/*')]),
     ]

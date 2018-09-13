@@ -1,0 +1,23 @@
+<a class="card incident status-type-{{ incident.type }}"
+  href="{{ incident.url }}">
+  <div class="status-column"></div>
+  <div class="incident--details-column">
+    <div class="incident--title">
+      {{ incident.title }}
+      {% if incident.type == 's' %}
+        on {{ incident.starts_at }}
+      {% endif %}
+    </div>
+    <div class="incident--current-status">{{ incident.current_status.description }}</div>
+    <div class="incident--footer">
+      <div class="incident--services" title="Services affected by this incident">
+        {% for service in incident.services %}
+          <span class="incident--service">{{ service.name }}</span>
+        {% endfor %}
+      </div>
+      <div class="incident--posted-at">
+        Posted at {{ incident.updated_at }}
+      </div>
+    </div>
+  </div>
+</a>

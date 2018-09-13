@@ -1,0 +1,62 @@
+{% if incidents.size == 0 %}
+  <div class="no-incidents">All Systems Operational</div>
+{% endif %}
+
+{% for service in services %}
+  {% include 'service', service: service %}
+  {% for child in service.children %}
+    {% include 'service', service: child %}
+  {% endfor %}
+{% endfor %}
+
+<!-- Current incidents -->
+
+{% if incidents.size > 0 %}
+  <br>
+  <h4 class="text-muted">Current Incidents</h4>
+  <hr>
+
+  {% for incident in incidents %}
+    {% include 'incident', incident: incident %}
+  {% endfor %}
+{% endif %}
+
+<!-- Future maintenances -->
+
+{% if maintenances.size > 0 %}
+  <br>
+  <h4 class="text-muted">Scheduled Maintenances</h4>
+  <hr>
+
+  {% for incident in maintenances %}
+    {% include 'incident', incident: incident %}
+  {% endfor %}
+{% endif %}
+
+<!-- Past incidents -->
+
+{% if past_incidents.size > 0 %}
+  <br>
+  <h4 class="text-muted">Past Incidents</h4>
+  <hr>
+
+  {% for incident in past_incidents %}
+    {% include 'incident', incident: incident %}
+  {% endfor %}
+{% endif %}
+
+{% if design.display_uptime_graph %}
+  <div class="incidents-history">
+    <span class="uptime">{{ uptime }}% Uptime</span>
+    <div class="segments"><!-- content goes here --></div>
+    <div class="time-legends">
+      <span>60 days ago</span>
+      <span>Today</span>
+    </div>
+  </div>
+{% endif %}
+
+<div class="metrics"></div>
+
+
+<a href="{{ incidents_url }}" class="previous-incidents pull-right">Incidents Archive</a>
