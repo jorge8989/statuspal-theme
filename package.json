@@ -14,21 +14,23 @@
   "author": "Eduardo Messuti",
   "license": "MIT",
   "dependencies": {
-    "concurrently": "^4.0.1",
-    "liquidjs": "^6.0.0",
-    "node-fetch": "^2.2.0",
-    "onchange": "^4.1.0",
     "clean-webpack-plugin": "^0.1.19",
+    "concurrently": "^4.0.1",
+    "copy-webpack-plugin": "^4.5.2",
     "css-entry-webpack-plugin": "^1.0.0-beta.4",
     "css-loader": "^1.0.0",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^4.0.0-alpha.2",
+    "liquidjs": "^6.0.0",
+    "node-fetch": "^2.2.0",
     "node-sass": "^4.9.3",
+    "onchange": "^4.1.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.0",
     "webpack": "^4.17.2",
     "webpack-cli": "^3.1.0",
-    "webpack-dev-server": "^3.1.8"
+    "webpack-dev-server": "^3.1.8",
+    "zip-webpack-plugin": "^3.0.0"
   }
 }
