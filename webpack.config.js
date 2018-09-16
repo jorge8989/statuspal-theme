@@ -1,17 +1,17 @@
 const path = require('path');
-const fetch = require('node-fetch');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const mode = process.env.NODE_ENV === 'production' ? 'production' : 'development';
 
-const getConfig = (data) => {
+module.exports = {
   const htmlLoaders = [{ loader: "html-loader" }];
-  if (mode !== 'production') htmlLoaders.push({
-    loader: "liquid-loader", options: { data, root: path.resolve(__dirname, 'src/templates/status_page') }
-  });
   return {
+    devServer: {
+      contentBase: path.join(__dirname, 'src/templates/status_page/service.liquid'),
+      watchContentBase: true,
+    },
     mode: mode,
     entry: './src/js/app.js',
     output: {
@@ -20,24 +20,14 @@ const getConfig = (data) => {
     },
     module: {
       rules: [
-        { test: /\.liquid|\.html$/, use: htmlLoaders },
         { test: /\.scss$/, use: ExtractTextPlugin.extract({fallback: 'style-loader', use: ['css-loader', 'sass-loader']}) },
         { test: /\.css$/, use: ExtractTextPlugin.extract({fallback: 'style-loader', use: 'css-loader'}) },
       ],
     },
     plugins: [
-      new HtmlWebpackPlugin({ template: __dirname + '/src/templates/status_page/index.liquid' }),
+      new HtmlWebpackPlugin({ template: path.resolve(__dirname, 'intermediate/index.html') }),
       new ExtractTextPlugin('css/[name]-[hash].css'),
       new CleanWebpackPlugin([path.resolve(__dirname, 'dist/*')]),
     ]
   };
-};
-
-module.exports = () => {
-  return new Promise((resolve, reject) => {
-    fetch('http://localhost:4000/api/v1/status_pages/meta')
-      .then(res => res.json())
-      .then(json => resolve(getConfig(json)))
-      .catch(e => reject(e));
-  });
 };
