@@ -3,15 +3,11 @@ const HtmlWebpackPlugin  = require('html-webpack-plugin');
 const ExtractTextPlugin  = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin  = require('copy-webpack-plugin');
-const ZipPlugin          = require('zip-webpack-plugin');
 
 const mode = process.env.NODE_ENV === 'production' ? 'production' : 'development';
+const indexPath = mode === 'production' ? 'src/templates/status_page/index.liquid' : 'intermediate/index.html';
 
 const config = {
-  devServer: {
-    contentBase: path.join(__dirname, 'src/templates/status_page/service.liquid'),
-    watchContentBase: true,
-  },
   mode: mode,
   entry: './src/js/app.js',
   output: {
@@ -25,16 +21,17 @@ const config = {
     ],
   },
   plugins: [
-    new HtmlWebpackPlugin({ template: path.resolve(__dirname, 'intermediate/index.html') }),
     new ExtractTextPlugin('css/[name]-[hash].css'),
     new CleanWebpackPlugin([path.resolve(__dirname, 'dist/*')]),
+    new HtmlWebpackPlugin({ template: indexPath, inject: false, templateParameters: (compilation) => {
+      return { webpack: compilation.getStats().toJson() };
+    }})
   ],
 };
 
 if (mode === 'production') {
   config.plugins = config.plugins.concat([
     new CopyWebpackPlugin([{ from: './src/templates', to: 'templates' }]),
-    new ZipPlugin({ filename: 'theme.zip' }),
   ]);
 }
 

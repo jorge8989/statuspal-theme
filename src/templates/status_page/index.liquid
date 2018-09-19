@@ -1,6 +1,12 @@
 <!doctype html>
 <html>
   <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="{{ design.favicon }}">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
+    <link href="{{ '/css/main-<%= webpack.hash %>.css' | assets_url }}" rel="stylesheet">
     <title>{{ name }} Status</title>
   </head>
   <body class="status-page">
@@ -60,5 +66,6 @@
       window.incidents = {{ uptime_history | json }};
     </script>
     <script src="{{ js_url }}"></script>
+    <script src="{{ '/js/main-<%= webpack.hash %>.js' | assets_url }}"></script>
   </body>
 </html>

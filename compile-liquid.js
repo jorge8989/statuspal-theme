@@ -1,21 +1,21 @@
-var path = require("path");
-var fs = require('fs');
-const fetch = require('node-fetch');
-var Liquid = require('liquidjs');
+const path   = require("path");
+const fs     = require('fs');
+const fetch  = require('node-fetch');
+const Liquid = require('liquidjs');
 
-var engine = Liquid({
+const engine = Liquid({
     root: path.resolve(__dirname, 'src/templates/status_page'),
     extname: '.liquid'
 });
+engine.registerFilter('assets_url', str => str)
 
-fetch('http://localhost:4000/api/v1/status_pages/meta')
-  .then(res => res.json())
-  .then((json) => {
-    engine.renderFile('index.liquid', json).then((content) => {
-      fs.writeFile(path.resolve(__dirname, 'intermediate/index.html'), content, (error) => {
-        if (error) console.error(`Failed to save file: ${error}`);
-      });
-    }).catch((e) => {
-      console.error(`Failed to compile liquid:\n${e}\n${e.stack}`);
-    });
+const data = JSON.parse(fs.readFileSync('./intermediate/data.json'));
+
+engine.renderFile('index.liquid', data)
+  .then((content) => {
+    fs.writeFileSync(path.resolve(__dirname, 'intermediate/index.html'), content);
+  })
+  .catch((e) => {
+    console.error(`Failed to compile liquid:\n${e}\n${e.stack}`);
   });
+1
