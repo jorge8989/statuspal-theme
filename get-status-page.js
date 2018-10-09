@@ -9,19 +9,28 @@ assert(SPAGE, 'Missing env variable SPAGE');
 
 console.log(`>>> Pulling data for status page \"${SPAGE}\" (${HOST})...\n\n`);
 
-(async () => {
+async function getData(path, jsonFileName) {
   try {
-    const resp = await fetch(`${HOST}/api/v1/status_pages/${SPAGE}`);
+    const resp = await fetch(`${HOST}/api/v1/${path}`);
     if (resp.status === 200) {
       const data = await resp.json();
-      fs.writeFile('./intermediate/data.json', JSON.stringify(data, null, 2), (err) => {
+      fs.writeFile(`./intermediate/${jsonFileName}`, JSON.stringify(data, null, 2), (err) => {
         if (err) error(err);
       });
+      return data;
     } else {
-      error(`Error getting status page data: ${resp.status}`);
+      error(`Error getting data: ${resp.status}`);
     }
   } catch (e) {
-    error(`Error getting status page data: ${e}`);
+    error(`Error getting data: ${e}`);
+  }
+};
+
+(async () => {
+  getData(`status_pages/${SPAGE}`, 'status_page.json');
+  const data = await getData(`status_pages/${SPAGE}/incidents`, 'incidents.json');
+  if (data.incidents[0]) {
+    getData(`status_pages/${SPAGE}/incidents/${data.incidents[0].id}`, 'incident.json');
   }
 })();
 

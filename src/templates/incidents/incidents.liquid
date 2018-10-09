@@ -1,0 +1,33 @@
+<!-- container-fluid -->
+<div class="container-fluid">
+  {% include 'shared/_header' %}
+
+  <main role="main">
+    <div class="container">
+      <h4>Incidents Archive</h4>
+      <hr>
+
+      <table class="table incidents-table card">
+        <tbody>
+          {% if incidents.size == 0 %}
+          <tr>
+            <td colspan="2" style="text-align:center">No incidents registered yet.</td>
+          </tr>
+          {% endif %}
+
+          {% for incident in incidents %}
+            <tr>
+              <td>
+                <a href="{{ incident.url | url }}">{{ incident.title }}</a>
+              </td>
+              <td class="text-right">{{ incident.inserted_at }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+<!-- /container-fluid -->
+
+{% include 'shared/_footer' %}

@@ -1,0 +1,14 @@
+<div class="header" style="background: linear-gradient(to right, {{ design.header_bg_color1  }}, {{ design.header_bg_color2  }});">
+  <div class="container">
+    <div class="brand-name-container">
+      <a href="{{ home_url | url }}" class="brand-name">
+        {% if design.logo %}<img src="{{ design.logo }}" alt="{{ name }} Logo" style="height: 30px">{% endif %}
+        {{ name }} Status
+      </a>
+    </div>
+    <a href="#" class="subscribe">Subscribe</a>
+  </div>
+</div>
+
+{% if info %}<p class="alert alert-info" role="alert">{{ info }}</p>{% endif %}
+{% if error %}<p class="alert alert-danger" role="alert">{{ error }}</p>{% endif %}

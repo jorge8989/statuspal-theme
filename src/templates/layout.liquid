@@ -1,0 +1,26 @@
+{% comment %}
+
+  DO NOT MODIFY
+
+  This will be overriden by Statuspal.
+
+{% endcomment %}
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="{{ design.favicon }}">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
+    <link href="{% assets_url '/css/theme-<%= webpack.hash %>.css' %}" rel="stylesheet">
+    <title>{{ name }} Status</title>
+  </head>
+  <body>
+
+    {% include template %}
+
+    <script src="{{ js_url }}"></script>
+    <script src="{% assets_url '/js/theme-<%= webpack.hash %>.js' %}"></script>
+  </body>
+</html>

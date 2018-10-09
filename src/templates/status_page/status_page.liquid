@@ -1,62 +1,80 @@
-{% if incidents.size == 0 %}
-  <div class="no-incidents">All Systems Operational</div>
-{% endif %}
+<!-- container-fluid -->
+<div class="container-fluid">
+  {% include 'shared/_header' %}
 
-{% for _service in services %}
-  {% include 'service', service: _service %}
-  {% for _child in _service.children %}
-    {% include 'service', service: _child %}
-  {% endfor %}
-{% endfor %}
+  <main role="main">
+    <div class="container">
+      {% if incidents.size == 0 %}
+        <div class="no-incidents">All Systems Operational</div>
+      {% endif %}
 
-<!-- Current incidents -->
+      {% for _service in services %}
+        {% include 'status_page/_service', service: _service %}
+        {% for _child in _service.children %}
+          {% include 'status_page/_service', service: _child %}
+        {% endfor %}
+      {% endfor %}
 
-{% if incidents.size > 0 %}
-  <br>
-  <h4 class="text-muted">Current Incidents</h4>
-  <hr>
+      <!-- Current incidents -->
 
-  {% for incident in incidents %}
-    {% include 'incident', incident: incident %}
-  {% endfor %}
-{% endif %}
+      {% if incidents.size > 0 %}
+        <br>
+        <h4 class="text-muted">Current Incidents</h4>
+        <hr>
 
-<!-- Future maintenances -->
+        {% for incident in incidents %}
+          {% include 'status_page/_incident', incident: incident %}
+        {% endfor %}
+      {% endif %}
 
-{% if maintenances.size > 0 %}
-  <br>
-  <h4 class="text-muted">Scheduled Maintenances</h4>
-  <hr>
+      <!-- Future maintenances -->
 
-  {% for incident in maintenances %}
-    {% include 'incident', incident: incident %}
-  {% endfor %}
-{% endif %}
+      {% if maintenances.size > 0 %}
+        <br>
+        <h4 class="text-muted">Scheduled Maintenances</h4>
+        <hr>
 
-<!-- Past incidents -->
+        {% for incident in maintenances %}
+          {% include 'status_page/_incident', incident: incident %}
+        {% endfor %}
+      {% endif %}
 
-{% if past_incidents.size > 0 %}
-  <br>
-  <h4 class="text-muted">Past Incidents</h4>
-  <hr>
+      <!-- Past incidents -->
 
-  {% for incident in past_incidents %}
-    {% include 'incident', incident: incident %}
-  {% endfor %}
-{% endif %}
+      {% if past_incidents.size > 0 %}
+        <br>
+        <h4 class="text-muted">Past Incidents</h4>
+        <hr>
 
-{% if design.display_uptime_graph %}
-  <div class="incidents-history">
-    <span class="uptime">{{ uptime }}% Uptime</span>
-    <div class="segments"><!-- content goes here --></div>
-    <div class="time-legends">
-      <span>60 days ago</span>
-      <span>Today</span>
+        {% for incident in past_incidents %}
+          {% include 'status_page/_incident', incident: incident %}
+        {% endfor %}
+      {% endif %}
+
+      {% if design.display_uptime_graph %}
+        <div class="incidents-history-graph">
+          <span class="uptime">{{ uptime }}% Uptime</span>
+          <div class="segments"><!-- content goes here --></div>
+          <div class="time-legends">
+            <span>60 days ago</span>
+            <span>Today</span>
+          </div>
+        </div>
+      {% endif %}
+
+      <div class="metrics"></div>
+
+      <a href="{{ incidents_url | url }}" class="previous-incidents pull-right">Incidents Archive</a>
+
     </div>
-  </div>
-{% endif %}
+  </main>
+</div>
+<!-- /container-fluid -->
 
-<div class="metrics"></div>
+{% include 'shared/_footer' %}
 
-
-<a href="{{ incidents_url }}" class="previous-incidents pull-right">Incidents Archive</a>
+<script>
+  window.statusPageRoot = '{{ home_url }}';
+  window.resourceBaseUrl = '{{ js_base_url }}';
+  window.incidents = {{ uptime_history | json }};
+</script>

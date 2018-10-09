@@ -1,15 +1,16 @@
 const path               = require('path');
+const fs                 = require('fs');
 const HtmlWebpackPlugin  = require('html-webpack-plugin');
 const ExtractTextPlugin  = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin  = require('copy-webpack-plugin');
+const WebpackPluginHash  = require('webpack-plugin-hash');
 
 const mode = process.env.NODE_ENV === 'production' ? 'production' : 'development';
-const indexPath = mode === 'production' ? 'src/templates/status_page/index.liquid' : 'intermediate/index.html';
 
 const config = {
   mode: mode,
-  entry: './src/js/app.js',
+  entry: { theme: ['./src/js/app.js'] },
   output: {
     filename: 'js/[name]-[hash].js',
     publicPath: '/'
@@ -23,15 +24,33 @@ const config = {
   plugins: [
     new ExtractTextPlugin('css/[name]-[hash].css'),
     new CleanWebpackPlugin([path.resolve(__dirname, 'dist/*')]),
-    new HtmlWebpackPlugin({ template: indexPath, inject: false, templateParameters: (compilation) => {
-      return { webpack: compilation.getStats().toJson() };
-    }})
   ],
+  devServer: {
+    historyApiFallback: {
+      rewrites: [
+        { from: /^\/$/, to: '/status_page.html' },
+        { from: /^\/incidents\/(\d+)/, to: '/incident.html' },
+        { from: /^\/incidents/, to: '/incidents.html' },
+      ],
+    },
+  }
 };
 
 if (mode === 'production') {
   config.plugins = config.plugins.concat([
     new CopyWebpackPlugin([{ from: './src/templates', to: 'templates' }]),
+    new WebpackPluginHash({
+      callback: (error, hash) => fs.writeFileSync(path.resolve(__dirname, 'dist/hash'), hash),
+    })
+  ]);
+} else {
+  config.plugins = config.plugins.concat([
+    new HtmlWebpackPlugin({ template: 'intermediate/status_page.html', inject: false, filename: 'status_page.html',
+      templateParameters: (compilation) => ({ webpack: compilation.getStats().toJson() })}),
+    new HtmlWebpackPlugin({ template: 'intermediate/incidents.html', inject: false, filename: 'incidents.html',
+      templateParameters: (compilation) => ({ webpack: compilation.getStats().toJson() })}),
+    new HtmlWebpackPlugin({ template: 'intermediate/incident.html', inject: false, filename: 'incident.html',
+      templateParameters: (compilation) => ({ webpack: compilation.getStats().toJson() })}),
   ]);
 }
 

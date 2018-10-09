@@ -1,0 +1,41 @@
+.incident--header {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.activities {
+  background: white;
+  border: 1px solid #eaeaea;
+  border-radius: 3px;
+
+  .activity {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #eaeaea;
+
+    .activity--type {
+      // font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .activity--description {
+      font-weight: 300;
+      margin-bottom: 10px;
+    }
+    .activity--date {
+      font-weight: 300;
+      color: grey;
+      font-weight: 300;
+    }
+  }
+}
+
+.incident--time-elapsed {
+  @extend .incident--service;
+
+  &.status-type-minor { border-color: $status-minor-incident-color; color: $status-minor-incident-color }
+  &.status-type-major { border-color: $status-major-incident-color; color: $status-major-incident-color }
+  &.status-type-scheduled { border-color: $status-maintenance-incident-color; color: $status-maintenance-incident-color }
+  &.status-type-none { border-color: $status-no-incident-color; color: $status-no-incident-color }
+}
