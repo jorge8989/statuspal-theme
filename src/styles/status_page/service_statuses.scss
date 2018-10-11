@@ -1,0 +1,103 @@
+.service-status {
+  position: relative;
+
+  .service-status--toggle-children {
+    margin-right: 10px;
+    color: $link-color;
+    border: 1px solid $link-color;
+    border-radius: 2px;
+    height: 12px;
+    width: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1em;
+
+    &:after { content: "+" }
+  }
+
+  .service-status--info {
+    display: flex;
+    align-items: center;
+    line-height: 1em;
+  }
+
+  .service-status--name {
+    font-weight: 700;
+    font-size: 1.1em;
+    flex: 1;
+  }
+
+  .service-status--status {
+    font-weight: 700;
+  }
+
+  .service-status--icon {
+    &:before { content: "L" }
+    font-style: normal;
+    transform: scaleX(-1) rotate(-45deg);
+    margin-left: 10px;
+    border: 2px solid;
+    width: 15px;
+    height: 15px;
+    font-size: 12px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1em;
+    font-weight: bold;
+    font-family: arial;
+  }
+}
+
+// parents
+.services-status > .service-status {
+  @extend .card;
+  padding: 18px 20px !important;
+  border-left: 1px solid;
+
+  & > .service-status--children {
+    margin-top: 10px;
+    display: none;
+  }
+
+  &.active > {
+    .service-status--children {
+      display: block;
+    }
+
+    .service-status--info {
+      .service-status--status, .service-status--icon {
+        display: none;
+      }
+      .service-status--toggle-children:after {
+        content: "-"
+      }
+    }
+  }
+}
+
+// childs
+.service-status .service-status {
+  padding-left: 25px;
+  margin-top: 10px;
+
+  .service-status--toggle-children {
+    display: none;
+  }
+}
+
+// change service status icon on minor/major incidents
+.services-status {
+  .status-type-major > .service-status--info, .status-type-minor > .service-status--info {
+    .service-status--icon {
+      transform: none;
+      &:before {
+        content: "✕";
+        position: relative;
+        left: 0.5px;
+      }
+    }
+  }
+}

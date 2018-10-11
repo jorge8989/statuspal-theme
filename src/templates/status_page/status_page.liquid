@@ -5,15 +5,21 @@
   <main role="main">
     <div class="container">
       {% if incidents.size == 0 %}
-        <div class="no-incidents">All Systems Operational</div>
+        <div class="system-status no-incidents">All Systems Operational</div>
+      {% else %}
+        <div class="system-status with-incidents">Ongoing Incident{% if incidents.size > 1 %}s{% endif %}</div>
       {% endif %}
 
-      {% for _service in services %}
-        {% include 'status_page/_service', service: _service %}
-        {% for _child in _service.children %}
-          {% include 'status_page/_service', service: _child %}
+      <div class="services-status">
+        {% for _service in services %}
+          {% include 'status_page/_service', service: _service %}
         {% endfor %}
-      {% endfor %}
+      </div>
+
+      {% if incidents.size == 0 %}
+        <br>
+        <br>
+      {% endif %}
 
       <!-- Current incidents -->
 

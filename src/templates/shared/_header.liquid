@@ -1,4 +1,77 @@
-<div class="header" style="background: linear-gradient(to right, {{ design.header_bg_color1  }}, {{ design.header_bg_color2  }});">
+<style>
+  /* basic styles */
+  .header {
+    background: linear-gradient(to right, {{ design.header_bg_color1  }}, {{ design.header_bg_color2  }});
+  }
+  .header a {
+    color: {{ design.header_fg_color }};
+  }
+  .incidents-table a {
+    color: {{ design.incident_link_color }};
+  }
+  h1 {
+    color: {{ design.incident_header_color }};
+  }
+
+  /* system status colors */
+
+  .system-status { background: {{ design.status_ok_color }}; }
+  .system-status.with-incidents { background: {{ design.status_major_color }}; }
+
+  /* service status colors */
+
+  .status-type-major > .service-status--info .service-status--status,
+  .status-type-major > .service-status--info .service-status--icon {
+    color: {{ design.status_major_color }};
+  }
+  .status-type-minor > .service-status--info .service-status--status,
+  .status-type-minor > .service-status--info .service-status--icon {
+    color: {{ design.status_minor_color }};
+  }
+  .status-type-scheduled > .service-status--info .service-status--status,
+  .status-type-scheduled > .service-status--info .service-status--icon {
+    color: {{ design.status_maintenance_color }};
+  }
+  .status-type-none > .service-status--info .service-status--status,
+  .status-type-none > .service-status--info .service-status--icon {
+    color: {{ design.status_ok_color }};
+  }
+
+  /* left border colors */
+
+  .service-status.status-type-major { border-left-color: {{ design.status_major_color }}; }
+  .service-status.status-type-minor { border-left-color: {{ design.status_minor_color }}; }
+  .service-status.status-type-scheduled { border-left-color: {{ design.status_maintenance_color }}; }
+  .service-status.status-type-none { border-left-color: {{ design.status_ok_color }}; }
+
+  /* status page's incident per status colors */
+
+  .status-type-major .status-column { background: {{ design.status_major_color }}; }
+  .status-type-minor .status-column { background: {{ design.status_minor_color }}; }
+  .status-type-scheduled .status-column { background: {{ design.status_maintenance_color }}; }
+  .status-type-none .status-column { background: {{ design.status_ok_color }}; }
+
+  /* incident time elapsed colors */
+
+  .incident--time-elapsed.status-type-major {
+    border-color: {{ design.status_major_color }};
+    color: {{ design.status_major_color }}
+  }
+  .incident--time-elapsed.status-type-minor {
+    border-color: {{ design.status_minor_color }};
+    color: {{ design.status_minor_color }}
+  }
+  .incident--time-elapsed.status-type-scheduled {
+    border-color: {{ design.status_maintenance_color }};
+    color: {{ design.status_maintenance_color }}
+  }
+  .incident--time-elapsed.status-type-none {
+    border-color: {{ design.status_ok_color }};
+    color: {{ design.status_ok_color }}
+  }
+</style>
+
+<div class="header">
   <div class="container">
     <div class="brand-name-container">
       <a href="{{ home_url | url }}" class="brand-name">

@@ -33,9 +33,4 @@
 
 .incident--time-elapsed {
   @extend .incident--service;
-
-  &.status-type-minor { border-color: $status-minor-incident-color; color: $status-minor-incident-color }
-  &.status-type-major { border-color: $status-major-incident-color; color: $status-major-incident-color }
-  &.status-type-scheduled { border-color: $status-maintenance-incident-color; color: $status-maintenance-incident-color }
-  &.status-type-none { border-color: $status-no-incident-color; color: $status-no-incident-color }
 }

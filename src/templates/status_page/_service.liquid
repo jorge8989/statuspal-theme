@@ -6,20 +6,21 @@
   {% when 'scheduled' %}
      {% assign type = 'Scheduled Maintenance' %}
   {% else %}
-     {% assign type = 'No known issues at this time' %}
+     {% assign type = 'Operational' %}
 {% endcase %}
 
-<div class="service-status{% if service.parent_id %} service-child{% endif %} status-type-{{ service.current_incident_type }}">
-  <span class="service-status--name">{{ service.name }}</span>
-  <div class="card">
-    <div class="status-column"></div>
-    <div class="service-status--details-column">
-      <spam
-        class="service-status--icon status-type-{{ service.current_incident_type }}"
-        aria-hidden="true"
-      >
-    </spam>
+<div class="service-status status-type-{{ service.current_incident_type }} {% if service.current_incident_type != 'none' %}active{% endif %}">
+  <div class="service-status--info">
+    {% if service.children and service.children.size > 0 %}
+      <a href="#" class="service-status--toggle-children" onclick="this.parentElement.parentElement.classList.toggle('active'); return false;"></a>
+    {% endif %}
+    <span class="service-status--name">{{ service.name }}</span>
     <span class="service-status--status">{{ type }}</span>
-    </div>
+    <i class="service-status--icon"></i>
+  </div>
+  <div class="service-status--children">
+    {% for _child in service.children %}
+      {% include 'status_page/_service', service: _child %}
+    {% endfor %}
   </div>
 </div>

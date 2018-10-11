@@ -1,12 +1,9 @@
-$status-minor-incident-color: orange;
-$status-major-incident-color: #ff7777;
-$status-maintenance-incident-color: #5378c1;
-$status-no-incident-color: #77ce77;
-$service-color: #0d92ce;
+$link-color: #0c91c3;
+$service-color: #0d92ce; // service tags in incidents
 
 @import "base";
 @import "modal";
-@import "status_page";
+@import "status_page/index";
 @import "incident";
 @import "incidents";
 
@@ -34,7 +31,6 @@ $service-color: #0d92ce;
       }
     }
     a {
-      color: white;
       &:hover {
         text-decoration: none;
       }
