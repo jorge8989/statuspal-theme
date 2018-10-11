@@ -12,6 +12,8 @@
     align-items: center;
     justify-content: center;
     line-height: 1em;
+    position: relative;
+    top: 1px;
 
     &:after { content: "+" }
   }
@@ -69,7 +71,7 @@
 
     .service-status--info {
       .service-status--status, .service-status--icon {
-        display: none;
+        visibility: hidden;
       }
       .service-status--toggle-children:after {
         content: "-"
