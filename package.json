@@ -1,12 +1,13 @@
 {
   "name": "statuspal-theme",
-  "version": "0.9.0",
+  "version": "1.0.0",
   "description": "Statuspal Theme",
   "repository": "https://github.com/statuspal/statuspal-theme",
   "main": "index.js",
   "theme": {
     "name": "default",
-    "version": "0.9.1"
+    "description": "Theme with a top bar and small logo",
+    "version": "1.0.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
