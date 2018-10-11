@@ -1,12 +1,12 @@
 <div class="modal subscribe-modal">
   <div class="modal-header">
-    <h3>Subscribe for notifications</h3>
+    <h3>Subscribe to get Updates via E-Mail</h3>
   </div>
   <div class="modal-body">
     <form action="{{ subscribe_url }}" method="post">
       <input type="hidden" value="{{ token }}" name="_csrf_token"/>
       <div class="left">
-        <input type="email" name="subscription[email]" required autofocus="true" placeholder="E-Mail">
+        <input type="email" name="subscription[email]" required autofocus="true" placeholder="your@email.com">
       </div>
       <div class="right">
         <input type="submit" value="Subscribe">
