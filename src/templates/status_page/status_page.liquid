@@ -7,7 +7,9 @@
       {% if incidents.size == 0 %}
         <div class="system-status no-incidents">All Systems Operational</div>
       {% else %}
-        <div class="system-status with-incidents">Ongoing Incident{% if incidents.size > 1 %}s{% endif %}</div>
+        <div class="system-status with-incidents">
+          There {% if incidents.size > 1 %}are{% else %}is an{% endif %} ongoing Incident{% if incidents.size > 1 %}s{% endif %}
+        </div>
       {% endif %}
 
       <div class="services-status">
