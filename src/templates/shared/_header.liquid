@@ -1,5 +1,12 @@
 <style>
   /* basic styles */
+  a {
+    color: {{ design.link_color }};
+  }
+  .service-status .service-status--toggle-children {
+    color: {{ design.link_color  }};
+    border-color: {{ design.link_color  }};
+  }
   .header {
     background: linear-gradient(to right, {{ design.header_bg_color1  }}, {{ design.header_bg_color2  }});
   }
@@ -76,7 +83,7 @@
     <div class="brand-name-container">
       <a href="{{ home_url | url }}" class="brand-name">
         {% if design.logo %}<img src="{{ design.logo }}" alt="{{ name }} Logo" style="height: 30px">{% endif %}
-        {{ name }} Status
+        {% unless design.hide_header_title %}{{ name }} Status{% endunless %}
       </a>
     </div>
     <a href="#" class="subscribe">Subscribe to Updates</a>
