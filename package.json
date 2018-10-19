@@ -1,6 +1,6 @@
 {
   "name": "statuspal-theme",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Statuspal Theme",
   "repository": "https://github.com/statuspal/statuspal-theme",
   "main": "index.js",
