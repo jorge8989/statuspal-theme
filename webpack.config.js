@@ -6,10 +6,11 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin  = require('copy-webpack-plugin');
 const WebpackPluginHash  = require('webpack-plugin-hash');
 
-const mode = process.env.NODE_ENV === 'production' ? 'production' : 'development';
+const MODE = process.env.NODE_ENV === 'production' ? 'production' : 'development';
+const PORT = process.env.PORT || 5500;
 
 const config = {
-  mode: mode,
+  mode: MODE,
   entry: { theme: ['./src/js/app.js'] },
   output: {
     filename: 'js/[name]-[hash].js',
@@ -26,6 +27,7 @@ const config = {
     new CleanWebpackPlugin([path.resolve(__dirname, 'dist/*')]),
   ],
   devServer: {
+    port: PORT,
     historyApiFallback: {
       rewrites: [
         { from: /^\/$/, to: '/status_page.html' },
@@ -36,7 +38,7 @@ const config = {
   }
 };
 
-if (mode === 'production') {
+if (MODE === 'production') {
   config.plugins = config.plugins.concat([
     new CopyWebpackPlugin([{ from: './src/templates', to: 'templates' }]),
     new WebpackPluginHash({
