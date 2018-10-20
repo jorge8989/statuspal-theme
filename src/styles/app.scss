@@ -17,10 +17,12 @@ $service-color: #0d92ce; // service tags in incidents
 
     .brand-name-container {
       font-size: 20px;
+      display: flex;
       flex: 1;
 
       a {
         display: flex;
+        align-items: center;
 
         img {
           height: 27px;
