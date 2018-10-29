@@ -9,7 +9,7 @@
 
 <script>
   // Colors used by the uptime history chart.
-  window.UPTIME_COLOR_MAJOR = '{{ design.status_major_color }}';
-  window.UPTIME_COLOR_MINOR = '{{ design.status_minor_color }}';
-  window.UPTIME_COLOR_OK = '{{ design.status_ok_color }}';
+  window.UPTIME_COLOR_MAJOR = '{% theme_color 'status_major_color' %}';
+  window.UPTIME_COLOR_MINOR = '{% theme_color 'status_minor_color' %}';
+  window.UPTIME_COLOR_OK = '{% theme_color 'status_ok_color' %}';
 </script>

@@ -1,79 +1,79 @@
 <style>
   /* basic styles */
   a {
-    color: {{ design.link_color }};
+    color: {% theme_color 'link_color' %};
   }
   .service-status .service-status--toggle-children {
-    color: {{ design.link_color  }};
-    border-color: {{ design.link_color  }};
+    color: {% theme_color 'link_color' %};
+    border-color: {% theme_color 'link_color' %};
   }
   .header {
-    background: linear-gradient(to right, {{ design.header_bg_color1  }}, {{ design.header_bg_color2  }});
+    background: linear-gradient(to right, {% theme_color 'header_bg_color1' %}, {% theme_color 'header_bg_color2' %});
   }
   .header a {
-    color: {{ design.header_fg_color }};
+    color: {% theme_color 'header_fg_color' %};
   }
   h1.incident-title, .incidents-table a {
-    color: {{ design.incident_header_color }};
+    color: {% theme_color 'incident_header_color' %};
   }
 
   /* system status colors */
 
-  .system-status.type-none { background: {{ design.status_ok_color }}; }
-  .system-status.type-scheduled { background: {{ design.status_maintenance_color }}; }
-  .system-status.type-minor { background: {{ design.status_minor_color }}; }
-  .system-status.type-major { background: {{ design.status_major_color }}; }
+  .system-status.type-none { background: {% theme_color 'status_ok_color' %}; }
+  .system-status.type-scheduled { background: {% theme_color 'status_maintenance_color' %}; }
+  .system-status.type-minor { background: {% theme_color 'status_minor_color' %}; }
+  .system-status.type-major { background: {% theme_color 'status_major_color' %}; }
 
   /* service status colors */
 
   .status-type-major > .service-status--info .service-status--status,
   .status-type-major > .service-status--info .service-status--icon {
-    color: {{ design.status_major_color }};
+    color: {% theme_color 'status_major_color' %};
   }
   .status-type-minor > .service-status--info .service-status--status,
   .status-type-minor > .service-status--info .service-status--icon {
-    color: {{ design.status_minor_color }};
+    color: {% theme_color 'status_minor_color' %};
   }
   .status-type-scheduled > .service-status--info .service-status--status,
   .status-type-scheduled > .service-status--info .service-status--icon {
-    color: {{ design.status_maintenance_color }};
+    color: {% theme_color 'status_maintenance_color' %};
   }
   .status-type-none > .service-status--info .service-status--status,
   .status-type-none > .service-status--info .service-status--icon {
-    color: {{ design.status_ok_color }};
+    color: {% theme_color 'status_ok_color' %};
   }
 
   /* left border colors */
 
-  .service-status.status-type-major { border-left-color: {{ design.status_major_color }}; }
-  .service-status.status-type-minor { border-left-color: {{ design.status_minor_color }}; }
-  .service-status.status-type-scheduled { border-left-color: {{ design.status_maintenance_color }}; }
-  .service-status.status-type-none { border-left-color: {{ design.status_ok_color }}; }
+  .service-status.status-type-major { border-left-color: {% theme_color 'status_major_color' %}; }
+  .service-status.status-type-minor { border-left-color: {% theme_color 'status_minor_color' %}; }
+  .service-status.status-type-scheduled { border-left-color: {% theme_color 'status_maintenance_color' %}; }
+  .service-status.status-type-none { border-left-color: {% theme_color 'status_ok_color' %}; }
 
   /* status page's incident per status colors */
 
-  .status-type-major .status-column { background: {{ design.status_major_color }}; }
-  .status-type-minor .status-column { background: {{ design.status_minor_color }}; }
-  .status-type-scheduled .status-column { background: {{ design.status_maintenance_color }}; }
-  .status-type-none .status-column { background: {{ design.status_ok_color }}; }
+  .status-type-major .status-column { background: {% theme_color 'status_major_color' %}; }
+  .status-type-minor .status-column { background: {% theme_color 'status_minor_color' %}; }
+  .status-type-scheduled .status-column { background: {% theme_color 'status_maintenance_color' %}; }
+  .status-type-none .status-column { background: {% theme_color 'status_ok_color' %}; }
 
   /* incident time elapsed colors */
 
   .incident--time-elapsed.status-type-major {
-    border-color: {{ design.status_major_color }};
-    color: {{ design.status_major_color }}
+    border-color: {% theme_color 'status_major_color' %};
+    color: {% theme_color 'status_major_color' %}
   }
   .incident--time-elapsed.status-type-minor {
-    border-color: {{ design.status_minor_color }};
-    color: {{ design.status_minor_color }}
+    border-color: {% theme_color 'status_minor_color' %};
+    color: {% theme_color 'status_minor_color' %}
   }
   .incident--time-elapsed.status-type-scheduled {
-    border-color: {{ design.status_maintenance_color }};
-    color: {{ design.status_maintenance_color }}
+    border-color: {% theme_color 'status_maintenance_color' %};
+    color: {% theme_color 'status_maintenance_color' %}
   }
   .incident--time-elapsed.status-type-none {
-    border-color: {{ design.status_ok_color }};
-    color: {{ design.status_ok_color }}
+    border-color: {% theme_color 'status_ok_color' %};
+    color: {% theme_color 'status_ok_color' %}
   }
 </style>
 

@@ -3,6 +3,8 @@ const fs     = require('fs');
 const fetch  = require('node-fetch');
 const Liquid = require('liquidjs');
 
+const packageObj = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'package.json'), 'utf8'));
+
 function compileTemplate(template) {
   const data = JSON.parse(fs.readFileSync(`./intermediate/${template}.json`));
   data.template = `${template}/${template}`;
@@ -29,6 +31,17 @@ engine.registerTag('assets_url', {
     return Promise.resolve(Liquid.evalValue(this.str, scope));
   }
 });
+
+engine.registerTag('theme_color', {
+  parse: function (tagToken, remainTokens) {
+    this.str = tagToken.args;
+  },
+  render: function (scope, hash) {
+    const colorName = Liquid.evalValue(this.str, scope);
+    return Promise.resolve(`#${packageObj.theme.defaults[colorName]}`);
+  }
+});
+
 engine.registerFilter('url', (str) => {
   const pieces = str.split(`status_pages/${process.env.SPAGE}`);
   const url = pieces.length > 1 ? pieces[1] : str;
