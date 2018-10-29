@@ -1,13 +1,25 @@
 {
   "name": "statuspal-theme",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Statuspal Theme",
   "repository": "https://github.com/statuspal/statuspal-theme",
   "main": "index.js",
   "theme": {
     "name": "default",
     "description": "Theme with a top bar and small logo",
-    "version": "1.0.0"
+    "version": "1.0.0",
+    "api_version": "1",
+    "defaults": {
+      "link_color": "0c91c3",
+      "header_bg_color1": "009688",
+      "header_bg_color2": "0c91c3",
+      "header_fg_color": "ffffff",
+      "incident_header_color": "009688",
+      "status_ok_color": "48CBA5",
+      "status_minor_color": "FFA500",
+      "status_major_color": "e75a53",
+      "status_maintenance_color": "5378c1"
+    }
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

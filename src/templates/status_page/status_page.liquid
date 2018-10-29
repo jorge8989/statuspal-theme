@@ -4,13 +4,14 @@
 
   <main role="main">
     <div class="container">
-      {% if incidents.size == 0 %}
-        <div class="system-status no-incidents">All Systems Operational</div>
-      {% else %}
-        <div class="system-status with-incidents">
-          There {% if incidents.size > 1 %}are{% else %}is an{% endif %} ongoing Incident{% if incidents.size > 1 %}s{% endif %}
-        </div>
-      {% endif %}
+      <div class="system-status type-{{ current_incident_type }}">
+        {% if current_incident_type == "none" %}
+          All Systems Operational
+        {% else %}
+          There {% if incidents.size > 1 %}are{% else %}is an{% endif %} ongoing
+          {% if current_incident_type == "scheduled" %}Maintenance{% else %}Incident{% endif %}{% if incidents.size > 1 %}s{% endif %}
+        {% endif %}
+      </div>
 
       <div class="services-status">
         {% for _service in services %}

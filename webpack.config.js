@@ -42,7 +42,12 @@ if (MODE === 'production') {
   config.plugins = config.plugins.concat([
     new CopyWebpackPlugin([{ from: './src/templates', to: 'templates' }]),
     new WebpackPluginHash({
-      callback: (error, hash) => fs.writeFileSync(path.resolve(__dirname, 'dist/hash'), hash),
+      callback: (error, hash) => {
+        const packageObj = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'package.json'), 'utf8'));
+        const { theme } = packageObj;
+
+        fs.writeFileSync(path.resolve(__dirname, 'dist/configs.json'), JSON.stringify({ ...theme, hash }, null, 2));
+      },
     })
   ]);
 } else {
