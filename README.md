@@ -19,8 +19,8 @@ live changes as you work on your theme.
 ### Setup
 
 1. Clone this repo locally: `git clone git@github.com:statuspal/statuspal-theme.git my-new-theme`.
-2. Set this remote as its upstream: `git remote rename origin upstream`.
-3. Cd to your new theme `cd my-new-theme`.
+2. Cd to your new theme `cd my-new-theme`.
+3. Set this remote as its upstream: `git remote rename origin upstream`.
 4. Run `npm install` to install dependencies.
 
 ### Development
