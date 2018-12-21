@@ -89,7 +89,7 @@
         {{ header_logo_text }}
       </a>
     </div>
-    {% if plan != "free" %}
+    {% if plan != "free" and subscribers_enabled %}
       <a href="#" class="subscribe">Subscribe to Updates</a>
     {% endif %}
   </div>
