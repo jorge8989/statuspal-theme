@@ -4,7 +4,12 @@
 
   <main role="main">
     <div class="container">
-      <h1 class="incident-title">{{ incident.title }}</h1>
+      <h1 class="incident-title">
+        {{ incident.title }}
+        {% if incident.type == 'scheduled' %}
+          on {{ incident.starts_at }}
+        {% endif %}
+      </h1>
 
       <div class="incident--header">
         <div class="incident--services">

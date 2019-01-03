@@ -18,7 +18,12 @@
           {% for incident in incidents %}
             <tr>
               <td>
-                <a href="{{ incident.url | url }}">{{ incident.title }}</a>
+                <a href="{{ incident.url | url }}">
+                  {{ incident.title }}
+                  {% if incident.type == 'scheduled' %}
+                    on {{ incident.starts_at }}
+                  {% endif %}
+                </a>
               </td>
               <td class="text-right">{{ incident.inserted_at }}</td>
             </tr>

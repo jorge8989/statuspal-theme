@@ -4,7 +4,7 @@
   <div class="incident--details-column">
     <div class="incident--title">
       {{ incident.title }}
-      {% if incident.type == 's' %}
+      {% if incident.type == 'scheduled' %}
         on {{ incident.starts_at }}
       {% endif %}
     </div>
