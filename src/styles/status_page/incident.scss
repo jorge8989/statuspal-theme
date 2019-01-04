@@ -31,7 +31,11 @@
       font-size: 1.1em;
       font-weight: 300;
       white-space: pre;
-      word-wrap: break-word;
+      white-space: -moz-pre-wrap; /* Firefox */
+      white-space: -pre-wrap; /* ancient Opera */
+      white-space: -o-pre-wrap; /* newer Opera */
+      white-space: pre-wrap; /* Chrome; W3C standard */
+      word-wrap: break-word; /* IE */
     }
     .incident--footer {
       padding-top: 10px;
