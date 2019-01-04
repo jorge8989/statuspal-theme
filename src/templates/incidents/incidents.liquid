@@ -21,7 +21,10 @@
                 <a href="{{ incident.url | url }}">
                   {{ incident.title }}
                   {% if incident.type == 'scheduled' %}
-                    on {{ incident.starts_at }}
+                    from {{ incident.starts_at }}
+                    {% if incident.ends_at %}
+                      to {{ incident.ends_at }}
+                    {% endif %}
                   {% endif %}
                 </a>
               </td>

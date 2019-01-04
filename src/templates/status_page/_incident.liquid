@@ -5,7 +5,10 @@
     <div class="incident--title">
       {{ incident.title }}
       {% if incident.type == 'scheduled' %}
-        on {{ incident.starts_at }}
+        from {{ incident.starts_at }}
+        {% if incident.ends_at %}
+          to {{ incident.ends_at }}
+        {% endif %}
       {% endif %}
     </div>
     <div class="incident--current-status">{{ incident.current_status.description }}</div>
