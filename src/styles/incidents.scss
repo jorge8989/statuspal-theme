@@ -7,5 +7,9 @@ table.incidents-table {
     border-top: none;
     border-bottom: 1px solid #eaeaea;
     padding: 15px;
+
+    &:last-child {
+        width: 90px;
+    }
   }
 }
