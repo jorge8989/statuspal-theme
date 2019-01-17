@@ -91,6 +91,8 @@
 
 // change service status icon on minor/major incidents
 .services-status {
+  margin-top: 50px;
+
   .status-type-major > .service-status--info, .status-type-minor > .service-status--info {
     .service-status--icon {
       transform: none;

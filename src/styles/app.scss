@@ -48,7 +48,16 @@ $service-color: #0d92ce; // service tags in incidents
   align-items: center;
 
   a {
-    color: grey;
+    color: #555;
+    margin-right: 20px;
+
+    &:last-child {
+      margin: 0;
+    }
+    &.powered-by {
+      float: right;
+      color: grey;
+    }
   }
 
   .container {
@@ -86,6 +95,28 @@ $service-color: #0d92ce; // service tags in incidents
 @media (max-width: 768px) {
   .container {
     padding: 0 10px;
+  }
+  .hidden-sm {
+    display: none;
+  }
+
+  body {
+    margin-bottom: 180px;
+  }
+
+  .footer {
+    height: 80px;
+
+    .container {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+
+      a {
+        margin: 5px 20px;
+      }
+    }
   }
 }
 

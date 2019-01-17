@@ -7,9 +7,18 @@
   text-align: center;
   padding: 12px;
   border-radius: 5px;
-  margin-bottom: 50px;
   font-size: 1.3em;
   font-weight: bold;
+}
+
+.contact-support {
+  margin-top: .8em;
+  text-align: center;
+  color: #888;
+
+  a {
+    color: #555;
+  }
 }
 
 .previous-incidents {

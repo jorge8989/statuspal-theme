@@ -1,7 +1,10 @@
 <footer class="footer">
   <div class="container">
     <a href="{{ url }}">{{ name }}</a>
-    <a href="http://statuspal.io" class="pull-right" target="_blank">Powered by Statuspal.io</a>
+    {% if design.twitter_public_screen_name %}
+      <a href="http://twitter.com/{{ design.twitter_public_screen_name }}" target="_blank">Twitter</a>
+    {% endif %}
+    <a href="http://statuspal.io" class="powered-by" target="_blank">Powered by Statuspal.io</a>
   </div>
 </footer>
 

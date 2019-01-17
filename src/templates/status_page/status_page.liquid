@@ -13,6 +13,15 @@
         {% endif %}
       </div>
 
+      {% if current_incident_type == "none" and design.support_email %}
+      <div class="contact-support">
+        Don't agree? contact us at
+        <a href="mailto:{{ design.support_email }}?subject=Report Incident">
+          {{ design.support_email }}
+        </a>
+      </div>
+      {% endif %}
+
       <div class="services-status">
         {% for _service in services %}
           {% include 'status_page/_service', service: _service %}
