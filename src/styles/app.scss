@@ -5,6 +5,7 @@ $service-color: #0d92ce; // service tags in incidents
 @import "status_page/index";
 @import "incident";
 @import "incidents";
+@import "markdown";
 
 .header {
   padding: 10px 0;

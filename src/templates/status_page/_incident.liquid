@@ -11,7 +11,7 @@
         {% endif %}
       {% endif %}
     </div>
-    <div class="incident--current-status">{{ incident.current_status.description }}</div>
+    <div class="incident--current-status markdown">{{ incident.current_status.description }}</div>
     <div class="incident--footer">
       <div class="incident--services" title="Services affected by this incident">
         {% for service in incident.services %}
