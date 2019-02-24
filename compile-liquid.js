@@ -42,6 +42,17 @@ engine.registerTag('theme_color', {
   }
 });
 
+engine.registerTag('t', {
+  parse: function (tagToken, remainTokens) {
+    this.str = tagToken.args;
+  },
+  render: function (scope, hash) {
+    const localization_key = Liquid.evalValue(this.str, scope);
+    const localization = Liquid.evalValue(`localization.${localization_key}`, scope);
+    return Promise.resolve(localization);
+  }
+});
+
 engine.registerFilter('url', (str) => {
   const pieces = str.split(`status_pages/${process.env.SPAGE}`);
   const url = pieces.length > 1 ? pieces[1] : str;

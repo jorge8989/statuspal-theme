@@ -6,16 +6,27 @@
     <div class="container">
       <div class="system-status type-{{ current_incident_type }}">
         {% if current_incident_type == "none" %}
-          All Systems Operational
+          {% t 'overall_status.operational' %}
         {% else %}
-          There {% if incidents.size > 1 %}are{% else %}is an{% endif %} ongoing
-          {% if current_incident_type == "scheduled" %}Maintenance{% else %}Incident{% endif %}{% if incidents.size > 1 %}s{% endif %}
+          {% if incidents.size == 1 %}
+            {% if current_incident_type == "scheduled" %}
+              {% t 'overall_status.maintenance_singular' %}
+            {% else %}
+              {% t 'overall_status.issue_singular' %}
+            {% endif %}
+          {% else %}
+            {% if current_incident_type == "scheduled" %}
+              {% t 'overall_status.maintenance_plural' %}
+            {% else %}
+              {% t 'overall_status.issue_plural' %}
+            {% endif %}
+          {% endif %}
         {% endif %}
       </div>
 
-      {% if current_incident_type == "none" and design.support_email %}
+      {% if current_incident_type == "scheduled" or current_incident_type == "none" and design.support_email %}
       <div class="contact-support">
-        Don't agree? contact us at
+        {% t 'contact_us' %}
         <a href="mailto:{{ design.support_email }}?subject=Report Incident">
           {{ design.support_email }}
         </a>
@@ -37,7 +48,7 @@
 
       {% if incidents.size > 0 %}
         <br>
-        <h4 class="text-muted">Current Incidents</h4>
+        <h4 class="text-muted">{% t 'current_incidents' %}</h4>
         <hr>
 
         {% for incident in incidents %}
@@ -49,7 +60,7 @@
 
       {% if maintenances.size > 0 %}
         <br>
-        <h4 class="text-muted">Scheduled Maintenances</h4>
+        <h4 class="text-muted">{% t 'scheduled_maintenances' %}</h4>
         <hr>
 
         {% for incident in maintenances %}
@@ -61,7 +72,7 @@
 
       {% if past_incidents.size > 0 %}
         <br>
-        <h4 class="text-muted">Past Incidents</h4>
+        <h4 class="text-muted">{% t 'past_incidents' %}</h4>
         <hr>
 
         {% for incident in past_incidents %}
@@ -71,18 +82,20 @@
 
       {% if design.display_uptime_graph %}
         <div class="incidents-history-graph">
-          <span class="uptime">{{ uptime }}% Uptime</span>
+          <span class="uptime">{{ uptime }}% {% t 'uptime_graph.uptime' %}</span>
           <div class="segments"><!-- content goes here --></div>
           <div class="time-legends">
-            <span>60 days ago</span>
-            <span>Today</span>
+            <span>60 {% t 'uptime_graph.days_ago' %}</span>
+            <span>{% t 'uptime_graph.today' %}</span>
           </div>
         </div>
       {% endif %}
 
       <div class="metrics"></div>
 
-      <a href="{{ incidents_url | url }}" class="previous-incidents pull-right">Incidents Archive</a>
+      <a href="{{ incidents_url | url }}" class="previous-incidents pull-right">
+        {% t 'incidents_archive' %}
+      </a>
 
     </div>
   </main>
@@ -92,7 +105,11 @@
 {% include 'shared/_footer' %}
 
 <script>
-  window.statusPageRoot = '{{ home_url }}';
+  window.statusPageRoot = '{{ root_url }}';
   window.resourceBaseUrl = '{{ js_base_url }}';
   window.incidents = {{ uptime_history | json }};
+  window.locale = {
+    responseTimeChart: {{ localization.response_time_chart | json }},
+    uptimeGraph: {{ localization.uptime_graph | json }}
+  };
 </script>

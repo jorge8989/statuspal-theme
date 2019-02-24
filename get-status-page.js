@@ -4,6 +4,9 @@ const assert = require('assert');
 
 const HOST = process.env.HOST || 'https://statuspal.io';
 const SPAGE = process.env.SPAGE;
+const LANG = process.env.LANG;
+
+const LANG_QUERY = LANG ? `lang=${LANG}&` : '';
 
 assert(SPAGE, 'Missing env variable SPAGE');
 
@@ -11,7 +14,7 @@ console.log(`>>> Pulling data for status page \"${SPAGE}\" (${HOST})...\n\n`);
 
 async function getData(path, jsonFileName) {
   try {
-    const resp = await fetch(`${HOST}/api/v1/${path}`);
+    const resp = await fetch(`${HOST}/api/v1/${path}?${LANG_QUERY}`);
     if (resp.status === 200) {
       const data = await resp.json();
       fs.writeFile(`./intermediate/${jsonFileName}`, JSON.stringify(data, null, 2), (err) => {

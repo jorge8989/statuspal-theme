@@ -4,14 +4,14 @@
 
   <main role="main">
     <div class="container">
-      <h4>Incidents Archive</h4>
+      <h4>{% t 'incidents_archive' %}</h4>
       <hr>
 
       <table class="table incidents-table card">
         <tbody>
           {% if incidents.size == 0 %}
           <tr>
-            <td colspan="2" style="text-align:center">No incidents registered yet.</td>
+            <td colspan="2" style="text-align:center">{% t 'no_incidents_yet' %}</td>
           </tr>
           {% endif %}
 

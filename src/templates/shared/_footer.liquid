@@ -5,9 +5,18 @@
       <a href="http://twitter.com/{{ design.twitter_public_screen_name }}" target="_blank">Twitter</a>
     {% endif %}
     {% if design.support_email %}
-      <a href="mailto:{{ design.support_email }}">Support</a>
+      <a href="mailto:{{ design.support_email }}">{% t 'support' %}</a>
     {% endif %}
-    <a href="http://statuspal.io" class="powered-by" target="_blank">Powered by Statuspal.io</a>
+    {% if langs.size > 1 %}
+      <select id="lang" onchange="setLocale(this)">
+        {% for lang in langs %}
+          <option value="{{ lang.lang }}" {% if lang.lang == locale %}selected="selected"{% endif %}>
+            {{ lang.title }}
+          </option>
+        {% endfor %}
+      </select>
+    {% endif %}
+    <a href="http://statuspal.io" class="powered-by" target="_blank">{% t 'powered_by' %} Statuspal.io</a>
   </div>
 </footer>
 

@@ -30,13 +30,14 @@
 
       <hr>
 
-      <h3 class="text-muted">Activity</h3>
+      <h3 class="text-muted">{% t 'incident.update.label' %}</h3>
 
       <div class="activities">
         {% for activity in incident.incident_activities %}
         <div class="activity">
           <span class="activity--type">
-            {{ activity.activity_type.name }}
+            {% assign t_key = "incident.update.types." | append: activity.activity_type.key %}
+            {% t t_key %}
           </span>
           <div class="activity--description markdown">{{ activity.description }}</div>
           <span class="activity--date">

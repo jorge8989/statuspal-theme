@@ -26,7 +26,8 @@
     "get-status-page": "node ./get-status-page.js",
     "build": "webpack",
     "start": "npm run get-status-page && concurrently 'npm run liquid-dev' webpack-dev-server",
-    "liquid-dev": "node compile-liquid.js && onchange 'src/templates/**/*' -- node compile-liquid.js",
+    "liquid": "node compile-liquid.js",
+    "liquid-dev": "npm run liquid && onchange 'src/templates/**/*' -- node compile-liquid.js",
     "release": "NODE_ENV=production webpack -p && rm -f ./dist/templates/layout.liquid && (cd dist && zip -r theme.zip .)",
     "dev": "npm run get-status-page && NODE_ENV=production webpack -p && mv ./dist/index.html ./dist/templates/status_page/index.liquid"
   },

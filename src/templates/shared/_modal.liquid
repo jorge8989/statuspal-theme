@@ -1,6 +1,6 @@
 <div class="modal subscribe-modal">
   <div class="modal-header">
-    <h3>Subscribe to get Updates</h3>
+    <h3>{% t 'subscribe_modal.title' %}</h3>
   </div>
   <div class="modal-body">
     <form action="{{ subscribe_url }}" method="post">
@@ -10,15 +10,15 @@
           <input type="email" name="subscription[email]" required autofocus="true" placeholder="your@email.com">
         </div>
         <div class="right">
-          <input type="submit" value="Subscribe">
+          <input type="submit" value="{% t 'subscribe_modal.button' %}">
         </div>
       </div>
       <label class="agree">
-        <input type="checkbox" required="required"> I agree to receive email updates
+        <input type="checkbox" required="required"> {% t 'subscribe_modal.agree_checkbox' %}
       </label>
       {% if design.twitter_public_screen_name %}
       <div class="twitter-handle">
-        Follow our updates on Twitter:
+        {% t 'subscribe_modal.twitter_follow' %}:
         <b>
           <a href="http://twitter.com/{{ design.twitter_public_screen_name }}" target="_blank">@{{ design.twitter_public_screen_name }}</a>
         </b>

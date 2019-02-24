@@ -1,12 +1,12 @@
 {% case service.current_incident_type %}
   {% when 'minor' %}
-     {% assign type = 'Minor Incident' %}
+     {% capture type %}{% t 'services_status.minor' %}{% endcapture %}
   {% when 'major' %}
-     {% assign type = 'Major Incident' %}
+    {% capture type %}{% t 'services_status.major' %}{% endcapture %}
   {% when 'scheduled' %}
-     {% assign type = 'Scheduled Maintenance' %}
+    {% capture type %}{% t 'services_status.maintenance' %}{% endcapture %}
   {% else %}
-     {% assign type = 'Operational' %}
+    {% capture type %}{% t 'services_status.operational' %}{% endcapture %}
 {% endcase %}
 
 <div class="service-status status-type-{{ service.current_incident_type }} {% if service.current_incident_type != 'none' and service.children.size > 0 %}active{% endif %}">
