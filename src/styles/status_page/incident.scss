@@ -40,6 +40,21 @@
       display: flex;
       align-items: center;
     }
+
+    @media (max-width: 500px) {
+      .incident--footer {
+        flex-direction: column;
+
+        .incident--services {
+          align-self: flex-start;
+        }
+
+        .incident--posted-at {
+          align-self: flex-end;
+          margin-top: 15px;
+        }
+      }
+    }
   }
 }
 
