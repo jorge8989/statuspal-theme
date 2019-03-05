@@ -108,7 +108,8 @@
   window.statusPageRoot = '{{ root_url }}';
   window.resourceBaseUrl = '{{ js_base_url }}';
   window.incidents = {{ uptime_history | json }};
-  window.locale = {
+  window.locale = '{{ locale }}';
+  window.localization = {
     responseTimeChart: {{ localization.response_time_chart | json }},
     uptimeGraph: {{ localization.uptime_graph | json }}
   };
