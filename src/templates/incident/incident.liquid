@@ -5,11 +5,13 @@
   <main role="main">
     <div class="container">
       <h1 class="incident-title">
+        {% capture from_str %}{% t 'incident.from' %}{% endcapture %}
+        {% capture to_str %}{% t 'incident.to' %}{% endcapture %}
         {{ incident.title }}
         {% if incident.type == 'scheduled' %}
-          from {{ incident.starts_at }}
+          {{ from_str | downcase }} {{ incident.starts_at }}
           {% if incident.ends_at %}
-            to {{ incident.ends_at }}
+            {{ to_str | downcase }} {{ incident.ends_at }}
           {% endif %}
         {% endif %}
       </h1>
