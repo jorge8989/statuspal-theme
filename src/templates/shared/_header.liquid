@@ -89,7 +89,7 @@
         {{ header_logo_text }}
       </a>
     </div>
-    {% if plan != "free" and subscribers_enabled %}
+    {% if subscribers_enabled or slack_subscriptions_enabled or design.twitter_public_screen_name %}
       <a href="#" class="subscribe">{% t 'subscribe_to_updates_1' %}<span class="hidden-sm"> {% t 'subscribe_to_updates_2' %}</span></a>
     {% endif %}
   </div>

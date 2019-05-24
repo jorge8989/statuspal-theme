@@ -22,7 +22,7 @@
 
   .modal-header {
     text-align: center;
-    border-bottom: 1px solid #dedede;
+    border-bottom: 1px solid #ccc;
 
     h3 {
       margin: 0;
@@ -32,7 +32,7 @@
     text-align: center;
   }
 
-  .modal-header, .modal-body {
+  .modal-header {
     padding: .8rem;
   }
 
@@ -72,7 +72,7 @@
 
 .subscribe-modal {
   form {
-    margin: 1rem 0;
+    margin: 0;
   }
 
   form .form-group {
@@ -85,8 +85,10 @@
     }
   }
 
+  $space: .8rem;
+
   .agree {
-    margin-top: .5em;
+    margin-top: $space;
     display: block;
     font-weight: 300;
 
@@ -99,10 +101,25 @@
     width: calc(100% - 21px);
   }
 
+  h4 {
+    font-weight: 400;
+    margin: 0 0 $space 0;
+  }
+
+  .row {
+    padding: $space $space $space*2 $space;
+    margin: $space 0;
+    border-bottom: 1px solid rgb(236, 236, 236);
+
+    &:first-child {
+      margin-top: $space*2;
+    }
+    &:last-child {
+      border: none;
+    }
+  }
+
   .twitter-handle {
-    border-top: 1px solid rgb(236, 236, 236);
-    padding-top: 1rem;
-    margin-top: 1rem;
     font-size: 1.1em;
   }
 }
