@@ -91,7 +91,7 @@
     </div>
 
     <!-- multiple ORs not working properly :/ -->
-    {% if subscribers_enabled %}
+    {% if plan != "free" and subscribers_enabled %}
       <a href="#" class="subscribe">{% t 'subscribe_to_updates_1' %}<span class="hidden-sm"> {% t 'subscribe_to_updates_2' %}</span></a>
     {% else %}
       {% if slack_subscriptions_enabled %}
