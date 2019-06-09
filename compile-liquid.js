@@ -49,7 +49,8 @@ engine.registerTag('t', {
   render: function (scope, hash) {
     const localization_key = Liquid.evalValue(this.str, scope);
     const localization = Liquid.evalValue(`localization.${localization_key}`, scope);
-    return Promise.resolve(localization);
+    var tpl = engine.parse(localization);
+    return engine.render(tpl, scope.contexts[0]);
   }
 });
 

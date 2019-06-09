@@ -1,3 +1,7 @@
+$spacing: 40px;
+$spacing-sm: 20px;
+$spacing-lg: 60px;
+
 html {
   position: relative;
   min-height: 100%;
@@ -50,6 +54,9 @@ textarea, input, button { outline: none; }
 .text-right {
   text-align: right;
 }
+.o-hidden {
+  overflow: hidden;
+}
 
 h1 {
   margin: 0;
@@ -70,4 +77,8 @@ td {
 form, ul, table {
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+p {
+  line-height: 1.6em;
 }

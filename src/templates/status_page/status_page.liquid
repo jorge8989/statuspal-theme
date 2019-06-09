@@ -2,8 +2,10 @@
 <div class="container-fluid">
   {% include 'shared/_header' %}
 
-  <main role="main">
+  <main role="main status-page">
     <div class="container">
+
+
       <div class="system-status type-{{ current_incident_type }}">
         {% if current_incident_type == "none" %}
           {% t 'overall_status.operational' %}
@@ -24,12 +26,19 @@
         {% endif %}
       </div>
 
-      {% if design.support_email %}
-      <div class="contact-support">
-        {% t 'contact_us' %}
-        <a href="mailto:{{ design.support_email }}?subject=Report Incident">
-          {{ design.support_email }}
-        </a>
+      {% if design.display_about or design.support_email %}
+      <div class="row about">
+        {% if design.display_about %}
+          {% t 'about' %}.
+        {% endif %}
+
+        {% if design.support_email %}
+          <div class="contact-support">
+            {% t 'contact_us' %}
+            <a href="mailto:{{ design.support_email }}?subject=Report Incident">
+              {{ design.support_email }}</a>.
+          </div>
+        {% endif %}
       </div>
       {% endif %}
 
@@ -39,49 +48,48 @@
         {% endfor %}
       </div>
 
-      {% if incidents.size == 0 %}
-        <br>
-        <br>
-      {% endif %}
+      <div class="incidents-container">
+        <!-- Current incidents -->
+        {% if incidents.size > 0 %}
+        <div class="row">
+          <h4 class="text-muted">{% t 'current_incidents' %}</h4>
+          <hr>
+          {% for incident in incidents %}
+            {% include 'status_page/_incident', incident: incident %}
+          {% endfor %}
+        </div>
+        {% endif %}
+        <!-- /Current incidents -->
 
-      <!-- Current incidents -->
+        <!-- Future maintenances -->
+        {% if maintenances.size > 0 %}
+        <div class="row">
+          <h4 class="text-muted">{% t 'scheduled_maintenances' %}</h4>
+          <hr>
 
-      {% if incidents.size > 0 %}
-        <br>
-        <h4 class="text-muted">{% t 'current_incidents' %}</h4>
-        <hr>
+          {% for incident in maintenances %}
+            {% include 'status_page/_incident', incident: incident %}
+          {% endfor %}
+        </div>
+        {% endif %}
+        <!-- /Future maintenances -->
 
-        {% for incident in incidents %}
-          {% include 'status_page/_incident', incident: incident %}
-        {% endfor %}
-      {% endif %}
+        <!-- Past incidents -->
+        {% if past_incidents.size > 0 %}
+        <div class="row">
+          <h4 class="text-muted">{% t 'past_incidents' %}</h4>
+          <hr>
 
-      <!-- Future maintenances -->
-
-      {% if maintenances.size > 0 %}
-        <br>
-        <h4 class="text-muted">{% t 'scheduled_maintenances' %}</h4>
-        <hr>
-
-        {% for incident in maintenances %}
-          {% include 'status_page/_incident', incident: incident %}
-        {% endfor %}
-      {% endif %}
-
-      <!-- Past incidents -->
-
-      {% if past_incidents.size > 0 %}
-        <br>
-        <h4 class="text-muted">{% t 'past_incidents' %}</h4>
-        <hr>
-
-        {% for incident in past_incidents %}
-          {% include 'status_page/_incident', incident: incident %}
-        {% endfor %}
-      {% endif %}
+          {% for incident in past_incidents %}
+            {% include 'status_page/_incident', incident: incident %}
+          {% endfor %}
+        </div>
+        {% endif %}
+        <!-- /Past incidents -->
+      </div>
 
       {% if design.display_uptime_graph %}
-        <div class="incidents-history-graph">
+        <div class="row o-hidden incidents-history-graph">
           <span class="uptime">{{ uptime }}% {% t 'uptime_graph.uptime' %}</span>
           <div class="segments"><!-- content goes here --></div>
           <div class="time-legends">
@@ -91,12 +99,11 @@
         </div>
       {% endif %}
 
-      <div class="metrics"></div>
+      <div class="row metrics"></div>
 
       <a href="{{ incidents_url | url }}" class="previous-incidents pull-right">
         {% t 'incidents_archive' %}
       </a>
-
     </div>
   </main>
 </div>

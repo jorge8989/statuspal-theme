@@ -9,15 +9,43 @@
   border-radius: 5px;
   font-size: 1.3em;
   font-weight: bold;
+  margin-bottom: 12px;
 }
 
-.contact-support {
-  margin-top: .8em;
+.about {
+  color: #555;
+  font-weight: 300;
   text-align: center;
-  color: #888;
+  padding: 0 10px;
+
+  h3 {
+    margin: 0 0 .5em 0;
+  }
+
+  p {
+    margin: 0;
+  }
 
   a {
-    color: #555;
+    color: #000;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.row {
+  margin-bottom: $spacing;
+
+  & > *:first-child { margin-top: 0; }
+  & > *:last-child { margin-bottom: 0; }
+}
+
+.incidents-container {
+  padding-top: $spacing-sm;
+
+  & > .row {
+    margin-bottom: $spacing-lg;
   }
 }
 
@@ -26,8 +54,8 @@
 }
 
 .incidents-history-graph {
-  padding: 40px 0 60px 0;
   text-align: right;
+  padding-top: $spacing-sm;
 
   .uptime {
     margin-bottom: 8px;
