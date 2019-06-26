@@ -16,7 +16,9 @@
         {% endfor %}
       </select>
     {% endif %}
-    <a href="http://statuspal.io" class="powered-by" target="_blank">{% t 'powered_by' %} Statuspal.io</a>
+    {% unless plan == "business" and hide_watermark == true %}
+      <a href="http://statuspal.io" class="powered-by" target="_blank">{% t 'powered_by' %} Statuspal.io</a>
+    {% endunless %}
   </div>
 </footer>
 
