@@ -5,6 +5,4 @@ window.setLocale = function (el) {
     window.location.href = window.location.href.split("?")[0] + "?lang=" + el.value;
 }
 
-setInterval(function() {
-  location.reload();
-}, 60000);
+setTimeout(function() { location.reload(); }, 60000);
