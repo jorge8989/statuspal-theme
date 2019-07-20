@@ -31,6 +31,6 @@
   }
 }
 
-.incident--time-elapsed {
+.incident--time-elapsed, .incident--type-name-tag {
   @extend .incident--service;
 }

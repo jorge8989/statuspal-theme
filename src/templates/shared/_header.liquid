@@ -14,6 +14,7 @@
     color: {% theme_color 'header_fg_color' %};
   }
   h1.incident-title, .incidents-table a {
+    display: inline;
     color: {% theme_color 'incident_header_color' %};
   }
 
@@ -59,19 +60,19 @@
 
   /* incident time elapsed colors */
 
-  .incident--time-elapsed.status-type-major {
+  .incident--type-name-tag.status-type-major {
     border-color: {% theme_color 'status_major_color' %};
     color: {% theme_color 'status_major_color' %}
   }
-  .incident--time-elapsed.status-type-minor {
+  .incident--type-name-tag.status-type-minor {
     border-color: {% theme_color 'status_minor_color' %};
     color: {% theme_color 'status_minor_color' %}
   }
-  .incident--time-elapsed.status-type-scheduled {
+  .incident--type-name-tag.status-type-scheduled {
     border-color: {% theme_color 'status_maintenance_color' %};
     color: {% theme_color 'status_maintenance_color' %}
   }
-  .incident--time-elapsed.status-type-none {
+  .incident--type-name-tag.status-type-none {
     border-color: {% theme_color 'status_ok_color' %};
     color: {% theme_color 'status_ok_color' %}
   }

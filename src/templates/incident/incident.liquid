@@ -1,9 +1,19 @@
+{% case incident.type %}
+  {% when 'minor' %}
+     {% capture type %}{% t 'services_status.minor' %}{% endcapture %}
+  {% when 'major' %}
+    {% capture type %}{% t 'services_status.major' %}{% endcapture %}
+  {% when 'scheduled' %}
+    {% capture type %}{% t 'services_status.maintenance' %}{% endcapture %}
+  {% else %}
+    {% capture type %}{% t 'services_status.operational' %}{% endcapture %}
+{% endcase %}
 <!-- container-fluid -->
 <div class="container-fluid">
   {% include 'shared/_header' %}
 
   <main role="main">
-    <div class="container">
+    <div class="container incident--full-page">
       <h1 class="incident-title">
         {% capture from_str %}{% t 'incident.from' %}{% endcapture %}
         {% capture to_str %}{% t 'incident.to' %}{% endcapture %}
@@ -15,6 +25,7 @@
           {% endif %}
         {% endif %}
       </h1>
+      <span class="incident--type-name-tag status-type-{{incident.type}}">{{type}}</span>
 
       <div class="incident--header">
         <div class="incident--services">
@@ -24,7 +35,7 @@
         </div>
 
         {% if incident.time_elapsed %}
-          <span class="incident--time-elapsed status-type-{{ incident.type }} pull-right">
+          <span class="incident--time-elapsed pull-right">
             {{ incident.time_elapsed }}
           </span>
         {% endif %}
@@ -54,4 +65,3 @@
 <!-- /container-fluid -->
 
 {% include 'shared/_footer' %}
-
