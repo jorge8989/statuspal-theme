@@ -1,8 +1,21 @@
+{% case incident.type %}
+  {% when 'minor' %}
+     {% capture type %}{% t 'services_status.minor' %}{% endcapture %}
+  {% when 'major' %}
+    {% capture type %}{% t 'services_status.major' %}{% endcapture %}
+  {% when 'scheduled' %}
+    {% capture type %}{% t 'services_status.maintenance' %}{% endcapture %}
+  {% else %}
+    {% capture type %}{% t 'services_status.operational' %}{% endcapture %}
+{% endcase %}
 <a class="card incident status-type-{{ incident.type }}"
   href="{{ incident.url | url }}">
   <div class="status-column"></div>
   <div class="incident--details-column">
     <div class="incident--title">
+      <span class="incident--time-elapsed status-type-{{ incident.type }} incident-status-type-label">
+        {{type}}
+      </span>
       {% capture from_str %}{% t 'incident.from' %}{% endcapture %}
       {% capture to_str %}{% t 'incident.to' %}{% endcapture %}
       {{ incident.title }}
@@ -13,7 +26,9 @@
         {% endif %}
       {% endif %}
     </div>
-    <div class="incident--current-status markdown">{{ incident.current_status.description }}</div>
+    <div class="incident--current-status markdown">
+      <span>[{{incident.current_status.activity_type.name}}]</span> {{ incident.current_status.description }}
+    </div>
     <div class="incident--footer">
       <div class="incident--services" title="Services affected by this incident">
         {% for service in incident.services %}
